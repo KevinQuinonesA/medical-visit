@@ -1,17 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title> Pacientes </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-list>
+      <ion-card *ngFor="let patient of patients"  [routerLink]="['../tab2/'+ patient.id]">
+        <ion-card-header>
+          <ion-card-subtitle>Paciente N° {{patient.id}}</ion-card-subtitle>
+          <ion-card-title>{{patient.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <h3>Fecha de Nacimiento: {{patient.birth_date}}</h3>
+          <h3>Dirección: {{patient.address}}</h3>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ion-list>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
