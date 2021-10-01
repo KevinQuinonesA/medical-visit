@@ -1,40 +1,39 @@
 import { isNgTemplate } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection} from '@angular/fire/compat/firestore'
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PatientService {
-
-  constructor(
-    public Firestore: AngularFirestore
-  ) {}
-  create<tipo>(data:tipo, enlace:string, id:string ){
-    const itemsCollection= this.Firestore.collection<tipo>(enlace);
-    return itemsCollection.doc(id).set(data)  //va  a tardar 
+  constructor(public Firestore: AngularFirestore) {}
+  create<tipo>(data: tipo, enlace: string, id: string) {
+    const itemsCollection = this.Firestore.collection<tipo>(enlace);
+    return itemsCollection.doc(id).set(data); //va  a tardar
   }
 
-  createId(){
+  createId() {
     return this.Firestore.createId();
   }
-  getDoc<tipo>(enlace:string, id:string){
-    const itemPatient=this.Firestore.collection(enlace);
+  getDoc<tipo>(enlace: string, id: string) {
+    const itemPatient = this.Firestore.collection(enlace);
     return itemPatient.doc(id).valueChanges();
   }
-  getCollectionChanges<tipo>(enlace:string):Observable<tipo[]>{
-    const itemsCollection=this.Firestore.collection<tipo>(enlace);
+  getCollectionChanges<tipo>(enlace: string): Observable<tipo[]> {
+    const itemsCollection = this.Firestore.collection<tipo>(enlace);
     return itemsCollection.valueChanges();
   }
 
-  deleteDoc<tipo>(enlace:string, id:string){
-    const itemPatient=this.Firestore.collection(enlace);
+  deleteDoc<tipo>(enlace: string, id: string) {
+    const itemPatient = this.Firestore.collection(enlace);
     return itemPatient.doc(id).delete();
   }
-  updateDoc<tipo>(data:tipo , enlace:string, id:string){
-    const itemPatient=this.Firestore.collection(enlace);
+  updateDoc<tipo>(data: tipo, enlace: string, id: string) {
+    const itemPatient = this.Firestore.collection(enlace);
     return itemPatient.doc(id).update(data);
   }
- 
-
 }

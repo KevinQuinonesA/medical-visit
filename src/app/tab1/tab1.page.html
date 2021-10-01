@@ -9,7 +9,7 @@
     <ion-list>
       <ion-card *ngFor="let patient of patients"  [routerLink]="['../tab2/'+ patient.id]">
         <ion-card-header>
-          <ion-card-subtitle>Paciente N° {{patient.id}}</ion-card-subtitle>
+          <ion-card-subtitle>Paciente COD: {{patient.id}}</ion-card-subtitle>
           <ion-card-title>{{patient.name}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
