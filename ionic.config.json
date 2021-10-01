@@ -1,5 +1,7 @@
 {
   "name": "medical-visit",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
