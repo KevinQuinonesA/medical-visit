@@ -29,12 +29,15 @@
             <ion-input formControlName="height" aria-autocomplete="none" autocomplete="false"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Dirección</ion-label>
+            <ion-label position="floating" >Dirección</ion-label>
             <ion-input formControlName="address" aria-autocomplete="none" autocomplete="false"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Ubicación GPS</ion-label>
-            <ion-input formControlName="gps_address" aria-autocomplete="none" autocomplete="false"></ion-input>
+            <ion-label position="floating">Ubicación GPS : ( Latitud , longitud )</ion-label>
+            <ion-input formControlName="gps_address" aria-autocomplete="none" autocomplete="false">{{latitud}} ,{{longitud}}</ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-button color="danger" (click)="obtenerCoordenadas()" id="gpsButton">Obtener Ubicación</ion-button>
           </ion-item>
           
           <ion-button color="success" size="full" [disabled]="!patientForm.valid" (click)="save()" id="loginButton">Agregar</ion-button>

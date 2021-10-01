@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PatientService } from '../services/patient.service';
 import { Patient } from '../models/interfaces';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -13,14 +14,15 @@ export class Tab2Page {
   patientForm: FormGroup;
   loading: any;
   patient: Patient;
-
+  latitud;
+  longitud;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private patientService: PatientService,
     public toastController: ToastController,
-    public loadingController: LoadingController
-  ) {
+    public loadingController: LoadingController,
+    private geo: Geolocation) {
     this.patientForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
@@ -33,6 +35,17 @@ export class Tab2Page {
 
   ngOnInit() {}
 
+  obtenerCoordenadas(){
+    this.geo.getCurrentPosition({
+      timeout:10000,
+      enableHighAccuracy: true
+    }).then((res)=>{
+      this.latitud = res.coords.latitude;
+      this.longitud = res.coords.longitude;
+    }).catch((e)=>{
+      console.log(e);
+    });
+  }
   // update(_id: any, user: any) {
   //   return new Promise((resolve, reject) => {
   //     this.patientService.update(_id, user).subscribe(
@@ -80,36 +93,6 @@ export class Tab2Page {
       });
 
     this.presentToast('Guardado con éxito', 2000);
-    // this.loading.dismiss();
-
-    // const userFormValue = this.patientForm.value;
-    // const group = [userFormValue.groups.id];
-    // const user = Object.assign({}, userFormValue, { groups: group });
-    // if (user.password && user.password === '') {
-    //   delete user.password;
-    // }
-
-    // const send = this.user
-    //   ? this.update(this.user.id, user)
-    //   : this.create(user);
-
-    // send
-    //   .then((res: any) => {
-    //     this.snackBar.open('Guardado correctamente!', 'Cerrar', {
-    //       duration: 3000,
-    //     });
-
-    //     this.userService.formControl.next(res);
-
-    //     if (res.event === 'create') {
-    //       this.router.navigate(['/admin/usuarios']);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     this.snackBar.open('Ops...algo no esta funcionando!', 'Cerrar', {
-    //       duration: 3000,
-    //     });
-    //   });
   }
 
   async presentToast(message: string, duration: number) {

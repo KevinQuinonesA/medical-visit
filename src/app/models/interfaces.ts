@@ -7,6 +7,7 @@ export interface Patient{
     gps:any;
 }
 export interface Patient_visit{
+    id_patient:number;
     weight:number;
     temperature:number, 
     pressure:number, 
