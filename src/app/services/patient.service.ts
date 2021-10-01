@@ -20,9 +20,9 @@ export class PatientService {
     return this.Firestore.createId();
   }
   getDoc<tipo>(enlace: string, id: string) {
-    const itemPatient = this.Firestore.collection(enlace);
+    const itemPatient = this.Firestore.collection<tipo>(enlace);
     return itemPatient.doc(id).valueChanges();
-  }
+  } 
   
   getCollectionChanges<tipo>(enlace:string):Observable<tipo[]>{
     const itemsCollection=this.Firestore.collection<tipo>(enlace);
@@ -30,13 +30,18 @@ export class PatientService {
   }
 
   deleteDoc<tipo>(enlace: string, id: string) {
-    const itemPatient = this.Firestore.collection(enlace);
+    const itemPatient = this.Firestore.collection<tipo>(enlace);
     return itemPatient.doc(id).delete();
   }
   updateDoc<tipo>(data: tipo, enlace: string, id: string) {
-    const itemPatient = this.Firestore.collection(enlace);
+    const itemPatient = this.Firestore.collection<tipo>(enlace);
     return itemPatient.doc(id).update(data);
   }
+  filterByPatient<tipo>(patient: string, enlace:string) {
+    const itemPatients = this.Firestore.collection<tipo>(enlace, ref => ref.where('id_patient','==', patient)).valueChanges();
+
+    return itemPatients;
+};
   
 
 }
