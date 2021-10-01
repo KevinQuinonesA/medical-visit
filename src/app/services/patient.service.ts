@@ -22,6 +22,7 @@ export class PatientService {
     const itemPatient=this.Firestore.collection(enlace);
     return itemPatient.doc(id).valueChanges();
   }
+  
   getCollectionChanges<tipo>(enlace:string):Observable<tipo[]>{
     const itemsCollection=this.Firestore.collection<tipo>(enlace);
     return itemsCollection.valueChanges();
@@ -35,6 +36,6 @@ export class PatientService {
     const itemPatient=this.Firestore.collection(enlace);
     return itemPatient.doc(id).update(data);
   }
- 
+  
 
 }
