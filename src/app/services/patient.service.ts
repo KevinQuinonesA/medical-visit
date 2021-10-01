@@ -19,8 +19,9 @@ export class PatientService {
   createId() {
     return this.Firestore.createId();
   }
-  getDoc<tipo>(enlace: string, id: string) {
-    const itemPatient = this.Firestore.collection(enlace);
+
+  getDoc<tipo>(enlace: string, id: string):Observable<tipo>{
+    const itemPatient = this.Firestore.collection<tipo>(enlace);
     return itemPatient.doc(id).valueChanges();
   }
   
@@ -30,11 +31,12 @@ export class PatientService {
   }
 
   deleteDoc<tipo>(enlace: string, id: string) {
-    const itemPatient = this.Firestore.collection(enlace);
+    const itemPatient = this.Firestore.collection<tipo>(enlace);
     return itemPatient.doc(id).delete();
   }
+  
   updateDoc<tipo>(data: tipo, enlace: string, id: string) {
-    const itemPatient = this.Firestore.collection(enlace);
+    const itemPatient = this.Firestore.collection<tipo>(enlace);
     return itemPatient.doc(id).update(data);
   }
   

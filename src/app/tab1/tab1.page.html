@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-list>
-      <ion-card *ngFor="let patient of patients"  [routerLink]="['../tab2/'+ patient.id]">
+      <ion-card *ngFor="let patient of patients"  [routerLink]="[patient.id]">
         <ion-card-header>
           <ion-card-subtitle>Paciente COD: {{patient.id}}</ion-card-subtitle>
           <ion-card-title>{{patient.name}}</ion-card-title>

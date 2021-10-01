@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PatientService } from '../services/patient.service';
-import { Patient } from '../models/interfaces';
+import { PatientService } from '../../services/patient.service';
+import { Patient } from '../../models/interfaces';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss'],
+  selector: 'app-patient-visit-form',
+  templateUrl: 'form.page.html',
+  styleUrls: ['form.page.scss'],
 })
-export class Tab2Page {
+export class PatientVisitFormPage {
   patientForm: FormGroup;
   loading: any;
   patient: Patient;

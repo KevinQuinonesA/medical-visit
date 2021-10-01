@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Pacientes </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Paciente COD: {{patient.id}}</ion-card-subtitle>
+      <ion-card-title>{{patient.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h3>Fecha de Nacimiento: {{patient.birth_date}}</h3>
+      <h3>Dirección: {{patient.address}}</h3>
+      <ion-button color="success" size="full" (click)="add()">Agregar Visita</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-list>
+      <!-- <ion-card *ngFor="let visit of patientVisits"  [routerLink]="['../tab2/'+ visit.id]">
+        <ion-card-header>
+          <ion-card-subtitle>Paciente COD: {{visit.id}}</ion-card-subtitle>
+          <ion-card-title>{{visit.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <h3>Fecha de Nacimiento: {{visit.birth_date}}</h3>
+          <h3>Dirección: {{visit.address}}</h3>
+        </ion-card-content>
+      </ion-card> -->
+    </ion-list>
+  </ion-list>
+
+</ion-content>
